@@ -5,14 +5,24 @@ class Vertex implements Comparable<Vertex>{
     private String city;
     private ArrayList<Edge> outEdges;
     private int numberOfEdges;
-    Integer distance = Integer.MAX_VALUE; //hint fra opg
-    Vertex previous = null; //hint fra opg
-    //private boolean isVisited = false;
+    private Integer distance = Integer.MAX_VALUE; //hint fra opg
+    private Vertex previous = null; //hint fra opg
+    private boolean isVisited = false;
+
+
 
     public Vertex (int id, String city){
         this.ID = id;
         this.city = city;
         outEdges = new ArrayList<Edge>();
+    }
+
+    public boolean isVisited() {
+        return isVisited;
+    }
+
+    public void setVisited(boolean visited) {
+        isVisited = visited;
     }
 
     public int getID() {
@@ -23,6 +33,12 @@ class Vertex implements Comparable<Vertex>{
 
     public ArrayList<Edge> getOutEdges() {
         return outEdges;
+    }
+
+    public Edge getOutEdge(int index){
+
+        return outEdges.get(index);
+
     }
 
     public int getNumberOfEdges() {
@@ -36,6 +52,34 @@ class Vertex implements Comparable<Vertex>{
 
     public void addOutEdge(Edge outEdge){
         outEdges.add(outEdge);
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setOutEdges(ArrayList<Edge> outEdges) {
+        this.outEdges = outEdges;
+    }
+
+    public void setNumberOfEdges(int numberOfEdges) {
+        this.numberOfEdges = numberOfEdges;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
+    public Vertex getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(Vertex previous) {
+        this.previous = previous;
     }
 
     @Override
