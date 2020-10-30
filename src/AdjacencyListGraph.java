@@ -37,64 +37,71 @@ public class AdjacencyListGraph {
     }
 
 
-    public void MSTPrims2() {
-        int[] distance = new int[vertices.size()];
-        int[] order = new int[vertices.size()];
+    public void PrimsMST() {
+        int[] distance = new int[vertices.size()]; //Used for printing tree and for calculating the weight total for the tree
+        int[] predecessor = new int[vertices.size()]; //Used for printing the tree
         PriorityQueue<Pair> que = new PriorityQueue<Pair>();
         Arrays.fill(distance, Integer.MAX_VALUE);
-        Arrays.fill(order, -1);
-        Vertex nextVertex;
+        Arrays.fill(predecessor, -1);
 
         if (vertices.size() > 0) {
             distance[0] = 0;
             que.offer(new Pair(0, 0));
         }
 
-        int counter = 0;
+        int counter = 0; //0-14 = (15)
+
 
         while (!que.isEmpty() && counter < vertices.size()) {
 
             Pair u = que.poll();
 
-            /*Has vertex been visited?*/
+            /* Has vertex been visited? */
             if (!vertices.get(u.index).isVisited()) {
 
-                /*Traverses all outEdges from vertex*/
+                /* Traverses all outEdges from vertex */
                 for (int i = 0; i < vertices.get(u.index).getOutEdges().size(); i++) {
 
-                    /*Saving all edges from vertex as pairs and adds them to the PriorityQueue*/
-                    Pair tempPair = new Pair(vertices.get(u.index).getOutEdges().get(i).getWeight(), u.index);
+                    /* Saving all edges from vertex as pairs (index = next vertexID) and adds them to the PriorityQueue */
+                    Pair tempPair = new Pair(vertices.get(u.index).getOutEdges().get(i).getWeight(), vertices.get(u.index).getOutEdges().get(i).getToVertex().getID());
                     que.offer(tempPair);
+
+                    //System.out.println("to: " + vertices.get(u.index).getOutEdges().get(i).getToVertex().getCity() + ", index: " + que.peek().index + ", distance: " + que.peek().distance);
 
                     int tempEdge = vertices.get(u.index).getOutEdges().get(i).getWeight();
 
-                    /*Saves the edge with the smallest weight in vertex object*/
+                    /* Saves the edge with the smallest weight in vertex object */
                     if (tempEdge < vertices.get(u.index).getDistance()) {
                         vertices.get(u.index).setDistance(tempEdge);
-                        nextVertex = vertices.get(u.index).getOutEdge(i).getToVertex();
-                        //System.out.println("Edge_   from: " + vertices.get(u.index).getOutEdge(i).getFromVertex().getCity() + ", to: " + vertices.get(u.index).getOutEdge(i).getToVertex().getCity() + ", distance: " + vertices.get(u.index).getOutEdge(i).getWeight());
+                        distance[counter] = tempEdge;
+                        System.out.println("Edge-=-=> from: " + vertices.get(u.index).getOutEdge(i).getFromVertex().getCity() + ", to: " + vertices.get(u.index).getOutEdge(i).getToVertex().getCity() + ", distance: " + vertices.get(u.index).getOutEdge(i).getWeight());
                     }
 
 
                 }
 
-                /*Sets vertex to visited*/
+                /* Sets vertex to visited */
                 vertices.get(u.index).setVisited(true);
-                order[u.index] = u.index;
+                predecessor[counter] = u.index;
                 counter++;
             }
 
+            if(vertices.get(u.index).isVisited()){
+                //traverse tilbage gennem
+            }
+
+
             //hvis der ikke er flere edges så skal kigge på pairs og finde den med mindst weight
-            //til et nyt vertex vi ikke har mødt før endnu tidligere engang på dagen
+            //til et nyt vertex vi ikke har opdaget endnu
 
         }
         System.out.println("Minimum spanning tree distance: ");
-        printMST(order, distance);
+        printMST(predecessor, distance);
     }
 
-    public void printMST(int[] prede, int[] dist){
+    public void printMST(int[] pred, int[] dist){
         for(int i = 0; i < vertices.size(); i++){
-            System.out.println(i + " parent " + prede[i] + " edge Weight " + dist[i]);
+            System.out.println("step: " + i + " parent: " + pred[i] + " edge Weight: " + dist[i]);
         }
     }
 }
