@@ -94,6 +94,7 @@ public class AdjacencyListGraph {
         }
 
         System.out.println("Minimum spanning tree distance: " + mst);
+        System.out.println("Minimum spanning tree kost: " + mst*1000000);
         printMST(predecessor, distance);
     }
 
