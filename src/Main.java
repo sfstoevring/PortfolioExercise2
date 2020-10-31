@@ -110,14 +110,12 @@ public class Main {
         adjacencyListGraph.newEdge(sorø,næstved,32);
         adjacencyListGraph.newEdge(sorø,slagelse,14);
         adjacencyListGraph.newEdge(nakskov,maribo,27);
-        //adjacencyListGraph.printGraph();
+        adjacencyListGraph.printGraph();
 
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
-        //adjacencyListGraph.newPrim();
 
         adjacencyListGraph.PrimsMST();
 
-// Lav shortest path her...
     }
 }
