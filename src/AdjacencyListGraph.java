@@ -43,56 +43,50 @@ public class AdjacencyListGraph {
         PriorityQueue<Pair> que = new PriorityQueue<Pair>();
         Arrays.fill(distance, Integer.MAX_VALUE);
         Arrays.fill(predecessor, -1);
-
+        int currentVertexID;
         if (vertices.size() > 0) {
             distance[0] = 0;
             que.offer(new Pair(0, 0));
         }
 
-        int counter = 0; //0-14 = (15)
+        int counter = 0;
 
 
         while (!que.isEmpty() && counter < vertices.size()) {
 
             Pair u = que.poll();
+            currentVertexID = u.index;
 
             /* Has vertex been visited? */
-            if (!vertices.get(u.index).isVisited()) {
+            if (!vertices.get(currentVertexID).isVisited()){
+                /* Sets vertex to visited */
+                vertices.get(currentVertexID).setVisited(true);
+
 
                 /* Traverses all outEdges from vertex */
                 for (int i = 0; i < vertices.get(u.index).getOutEdges().size(); i++) {
 
+
                     /* Saving all edges from vertex as pairs (index = next vertexID) and adds them to the PriorityQueue */
-                    Pair tempPair = new Pair(vertices.get(u.index).getOutEdges().get(i).getWeight(), vertices.get(u.index).getOutEdges().get(i).getToVertex().getID());
+                    Pair tempPair = new Pair(vertices.get(currentVertexID).getOutEdges().get(i).getWeight(), vertices.get(currentVertexID).getOutEdges().get(i).getToVertex().getID());
                     que.offer(tempPair);
 
-                    //System.out.println("to: " + vertices.get(u.index).getOutEdges().get(i).getToVertex().getCity() + ", index: " + que.peek().index + ", distance: " + que.peek().distance);
-
-                    int tempEdge = vertices.get(u.index).getOutEdges().get(i).getWeight();
+                    int tempEdgeDistance = vertices.get(currentVertexID).getOutEdges().get(i).getWeight();
 
                     /* Saves the edge with the smallest weight in vertex object */
-                    if (tempEdge < vertices.get(u.index).getDistance()) {
-                        vertices.get(u.index).setDistance(tempEdge);
-                        distance[counter] = tempEdge;
-                        System.out.println("Edge-=-=> from: " + vertices.get(u.index).getOutEdge(i).getFromVertex().getCity() + ", to: " + vertices.get(u.index).getOutEdge(i).getToVertex().getCity() + ", distance: " + vertices.get(u.index).getOutEdge(i).getWeight());
+                    if (tempEdgeDistance < vertices.get(u.index).getDistance()) {
+                        vertices.get(u.index).setDistance(tempEdgeDistance);
+                        distance[counter] = tempEdgeDistance;
                     }
-
-
                 }
 
-                /* Sets vertex to visited */
-                vertices.get(u.index).setVisited(true);
+
+
                 predecessor[counter] = u.index;
                 counter++;
+                System.out.println("smallest edge distance " + vertices.get(u.index).getDistance() + ", vertexID: " + vertices.get(u.index).getID() + ", city: " + vertices.get(u.index).getCity() + ", visited: " + vertices.get(u.index).isVisited());
+
             }
-
-            if(vertices.get(u.index).isVisited()){
-                //traverse tilbage gennem
-            }
-
-
-            //hvis der ikke er flere edges så skal kigge på pairs og finde den med mindst weight
-            //til et nyt vertex vi ikke har opdaget endnu
 
         }
         System.out.println("Minimum spanning tree distance: ");

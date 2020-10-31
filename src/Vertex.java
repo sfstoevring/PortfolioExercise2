@@ -7,7 +7,7 @@ class Vertex implements Comparable<Vertex>{
     private int numberOfEdges;
     private Integer distance = Integer.MAX_VALUE; //hint fra opg
     private Vertex previous = null; //hint fra opg
-    private boolean isVisited = false;
+    private boolean isVisited;
 
 
 
@@ -15,6 +15,7 @@ class Vertex implements Comparable<Vertex>{
         this.ID = id;
         this.city = city;
         outEdges = new ArrayList<Edge>();
+        isVisited = false;
     }
 
     public boolean isVisited() {
