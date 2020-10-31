@@ -50,6 +50,7 @@ public class AdjacencyListGraph {
         }
 
         int counter = 0;
+        int mst = 0;
 
 
         while (!que.isEmpty() && counter < vertices.size()) {
@@ -74,8 +75,8 @@ public class AdjacencyListGraph {
                     int tempEdgeDistance = vertices.get(currentVertexID).getOutEdges().get(i).getWeight();
 
                     /* Saves the edge with the smallest weight in vertex object */
-                    if (tempEdgeDistance < vertices.get(u.index).getDistance()) {
-                        vertices.get(u.index).setDistance(tempEdgeDistance);
+                    if (tempEdgeDistance < vertices.get(currentVertexID).getDistance()) {
+                        vertices.get(currentVertexID).setDistance(tempEdgeDistance);
                         distance[counter] = tempEdgeDistance;
                     }
                 }
@@ -84,12 +85,15 @@ public class AdjacencyListGraph {
 
                 predecessor[counter] = u.index;
                 counter++;
-                System.out.println("smallest edge distance " + vertices.get(u.index).getDistance() + ", vertexID: " + vertices.get(u.index).getID() + ", city: " + vertices.get(u.index).getCity() + ", visited: " + vertices.get(u.index).isVisited());
-
             }
 
         }
-        System.out.println("Minimum spanning tree distance: ");
+
+        for(int i = 0 ; i < distance.length; i++){
+            mst += distance[i];
+        }
+
+        System.out.println("Minimum spanning tree distance: " + mst);
         printMST(predecessor, distance);
     }
 
