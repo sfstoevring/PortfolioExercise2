@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-//Adding verticies
+        /* Creating vertices */
         AdjacencyListGraph adjacencyListGraph = new AdjacencyListGraph();
         Vertex eskilstrup = new Vertex(0, "Eskilstrup");
         adjacencyListGraph.addVertex(eskilstrup);
@@ -37,11 +37,7 @@ public class Main {
         Vertex nakskov = new Vertex(15, "Nakskov");
         adjacencyListGraph.addVertex(nakskov);
 
-
-
-
-
-//Adding edges to verticies
+        /* Assigning edges to vertices */
         adjacencyListGraph.newEdge(eskilstrup,maribo,28);
         adjacencyListGraph.newEdge(eskilstrup,nykøbingF,13);
         adjacencyListGraph.newEdge(eskilstrup,vordingborg,24);
@@ -87,35 +83,11 @@ public class Main {
         adjacencyListGraph.newEdge(ringsted,sorø,15);
         adjacencyListGraph.newEdge(ringsted,vordingborg,58);
         adjacencyListGraph.newEdge(slagelse,sorø,14);
-//edges from nyk, vord, ros, sorø, nak
-        adjacencyListGraph.newEdge(nykøbingF,maribo,26);
-        adjacencyListGraph.newEdge(nykøbingF,eskilstrup,13);
-        adjacencyListGraph.newEdge(vordingborg,eskilstrup,24);
-        adjacencyListGraph.newEdge(vordingborg,næstved,28);
-        adjacencyListGraph.newEdge(vordingborg,haslev,40);
-        adjacencyListGraph.newEdge(vordingborg,ringsted,28);
-        adjacencyListGraph.newEdge(vordingborg,køge,60);
-        adjacencyListGraph.newEdge(roskilde,jægerspris,33);
-        adjacencyListGraph.newEdge(roskilde,holbæk,32);
-        adjacencyListGraph.newEdge(roskilde,kalundborg,70);
-        adjacencyListGraph.newEdge(roskilde,ringsted,31);
-        adjacencyListGraph.newEdge(roskilde,næstved,57);
-        adjacencyListGraph.newEdge(roskilde,haslev,47);
-        adjacencyListGraph.newEdge(roskilde,køge,25);
-        adjacencyListGraph.newEdge(sorø,kalundborg,51);
-        adjacencyListGraph.newEdge(sorø,holbæk,34);
-        adjacencyListGraph.newEdge(sorø,jægerspris,63);
-        adjacencyListGraph.newEdge(sorø,ringsted,15);
-        adjacencyListGraph.newEdge(sorø,haslev,34);
-        adjacencyListGraph.newEdge(sorø,næstved,32);
-        adjacencyListGraph.newEdge(sorø,slagelse,14);
-        adjacencyListGraph.newEdge(nakskov,maribo,27);
-        adjacencyListGraph.printGraph();
+
+        //adjacencyListGraph.printGraph();
 
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
-
-        adjacencyListGraph.PrimsMST();
-
+        adjacencyListGraph.PrimsMstAlgorithm();
     }
 }

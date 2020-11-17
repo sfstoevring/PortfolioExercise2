@@ -1,6 +1,8 @@
-public class Pair implements Comparable<Pair>{
+public class Pair implements Comparable<Pair> {
+
     Integer distance;
     Integer index;
+
     public Pair(Integer distance, Integer vertex){
         this.distance = distance;
         this.index = vertex;

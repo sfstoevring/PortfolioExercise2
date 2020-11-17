@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
-class Vertex implements Comparable<Vertex>{
+class Vertex implements Comparable<Vertex> {
+
     private int ID;
     private String city;
     private ArrayList<Edge> outEdges;
     private int numberOfEdges;
-    private Integer distance = Integer.MAX_VALUE; //hint fra opg
-    private Vertex previous = null; //hint fra opg
+    private Integer distance = Integer.MAX_VALUE;
+    private Vertex previous;
     private boolean isVisited;
 
 
